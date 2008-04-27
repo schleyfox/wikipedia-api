@@ -44,11 +44,23 @@ class Wikipedia
     @pages = (@xml/:api/:query/:pages/:page).collect{|p| Page.new(p) }
   end
 
+  # find by pageid
+  #
+  #   Wikipedia.find(10).title #=> "AccessibleComputing"
+  def self.find(*opts)
+    find_by_pageids(opts).pages.first
+  end
+
   # find the articles identified by the Array page_ids
   def self.find_by_pageids(*opts)
     page_ids, opts_qs = handle_options(opts)
     page_ids_qs = make_qs("pageids", page_ids)
     Wikipedia.new(make_url(opts_qs.push(page_ids_qs)))
+  end
+
+  # Same as find_by_titles but returns a single page
+  def self.find_by_title(*opts)
+    find_by_titles(opts).pages.first
   end
 
   # find the articles identified by the Array titles
