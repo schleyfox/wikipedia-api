@@ -1,6 +1,8 @@
 # This file contains magical incantations to interface with the new Wikipedia
 # API.  This is very much a work in progress so don't count on it not changing
 # (for the better).
+#
+# Check out the source on github http://github.com/schleyfox/wikipedia-api
 
 ['hpricot', 'cgi', 'open-uri'].each {|f| require f}
 
@@ -15,18 +17,18 @@
 # pages
 #
 #   require 'wikipedia'
-#   page = Wikipedia.find_by_titles(['Foo']).pages.first
+#   page = Wikipedia.find_by_titles('Foo').pages.first
 #   page.title #=> "Foo"
 #
 # Pages can also be found based on pageid
 # 
-#   page = Wikipedia.find_by_pageids([10]).pages.first
+#   page = Wikipedia.find_by_pageids(10).pages.first
 #   page.title #=> "AccessibleComputing"
 #
 # Further API options can be specified in the optional second parameter to
 # find_by_*.  This can be used to limit the fetching of unnecessary data
 #
-#   page = Wikipedia.find_by_titles(['Foo'], {:prop => [:langlinks]}).pages.first
+#   page = Wikipedia.find_by_titles('Foo', :prop => [:langlinks]).pages.first
 #   page.langlinks #=> ["da", "fi", "it", "no", "sl", "vi"]
 #
 class Wikipedia
@@ -43,15 +45,15 @@ class Wikipedia
   end
 
   # find the articles identified by the Array page_ids
-  def self.find_by_pageids(page_ids, opts = nil)
-    opts_qs = handle_options(opts)
+  def self.find_by_pageids(*opts)
+    page_ids, opts_qs = handle_options(opts)
     page_ids_qs = make_qs("pageids", page_ids)
     Wikipedia.new(make_url(opts_qs.push(page_ids_qs)))
   end
 
   # find the articles identified by the Array titles
-  def self.find_by_titles(titles, opts = nil)
-    opts_qs = handle_options(opts)
+  def self.find_by_titles(*opts)
+    titles, opts_qs = handle_options(opts)
     titles_qs = make_qs("titles", titles)
     Wikipedia.new(make_url(opts_qs.push(titles_qs)))
   end
@@ -92,6 +94,12 @@ class Wikipedia
   end
 
   def self.handle_options(opts)
+    arr = opts.delete_if{|o| o.is_a? Hash}
+    hash = (opts - arr).first
+    [arr, handle_opts_hash(hash)]
+  end
+
+  def self.handle_opts_hash(opts)
     opts ||= {}
     res = []
 
