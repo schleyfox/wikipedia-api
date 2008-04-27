@@ -2,9 +2,10 @@
 
 class Wikipedia
   BASE_URL = 'http://en.wikipedia.org/w/api.php?format=xml&'
-  OPTS = [:revids, :prop]
+  #OPTS = [:revids, :prop]
   PROPS = [:info, :revisions, :links, :langlinks, :images, :imageinfo,
     :templates, :categories, :extlinks, :categoryinfo]
+  RVPROPS = [:ids, :flags, :timestamp, :user, :size, :comment, :content]
 
   attr_accessor :xml, :pages
 
@@ -15,13 +16,13 @@ class Wikipedia
 
   def self.find_by_pageids(page_ids, opts = nil)
     opts_qs = handle_options(opts)
-    page_ids_qs = "pageids=#{CGI.escape(page_ids.join('|'))}"
+    page_ids_qs = make_qs("pageids", page_ids)
     Wikipedia.new(make_url(opts_qs.push(page_ids_qs)))
   end
 
   def self.find_by_titles(titles, opts = nil)
     opts_qs = handle_options(opts)
-    titles_qs = "titles=#{CGI.escape(titles.join('|'))}"
+    titles_qs = make_qs("titles", titles)
     Wikipedia.new(make_url(opts_qs.push(titles_qs)))
   end
 
@@ -34,8 +35,21 @@ class Wikipedia
       @images = (page/:images/:im).collect{|im| im.attributes['title']}
       @templates = (page/:templates/:tl).collect{|tl| tl.attributes['title']}
       @extlinks = (page/:extlinks/:el).collect{|el| el.inner_html}
+      @revisions = (page/:revisions/:rev).collect{|rev| Revision.new(rev)}
     end
+  end
 
+  class Revision
+    attr_accessor *RVPROPS
+    attr_accessor :revid
+
+    def initialize(rev)
+      @revid = rev.attributes['revid']
+      @user = rev.attributes['user']
+      @timestamp = DateTime.parse(rev.attributes['timestamp'])
+      @comment = rev.attributes['comment']
+      @content = rev.inner_html
+    end
   end
 
   protected
@@ -45,10 +59,25 @@ class Wikipedia
 
   def self.handle_options(opts)
     opts ||= {}
+    res = []
+
     opts[:prop] ||= PROPS
     opts[:prop] = opts[:prop] & PROPS
-    res = ["prop=#{CGI.escape(opts[:prop].join('|'))}"]
-    res << "revids=#{CGI.escape(opts[:revids].join('|'))}" if opts[:revids]
+    res << make_qs("prop", opts[:prop])
+    
+    if opts[:revids]
+      res << make_qs("revids", opts[:revids])
+    end
+
+    if opts[:rvprop] 
+      opts[:rvprop] = opts[:rvprop] & RVPROPS
+      res << make_qs("rvprop", opts[:rvprop])
+    end
+
     res
+  end
+
+  def self.make_qs(name, collection)
+    "#{name}=#{CGI.escape(collection.join('|'))}"
   end
 end
