@@ -94,7 +94,7 @@ class Wikipedia
     def initialize(rev)
       @revid = rev.attributes['revid']
       @user = rev.attributes['user']
-      @timestamp = DateTime.parse(rev.attributes['timestamp'])
+      @timestamp = Time.parse(rev.attributes['timestamp'])
       @comment = rev.attributes['comment']
       @content = rev.inner_html
     end
