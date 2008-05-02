@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<api>
+  <query>
+    <pages>
+      <page lastrevid="208372148" touched="2008-04-29T06:15:08Z" title="Foo" ns="0" length="3945" counter="0" pageid="9132808">
+        <revisions>
+          <rev timestamp="2008-04-26T19:07:10Z" user="Andreas Kaufmann" revid="208372148" comment="Removed category &quot;Computer programming&quot;; Quick-adding category &quot;Variable (computer programming)&quot; (using [[WP:HOTCAT|HotCat]])" minor=""/>
+        </revisions>
+        <links>
+          <pl title="2007" ns="0"/>
+          <pl title="Abstract entity" ns="0"/>
+          <pl title="Abstraction (computer science)" ns="0"/>
+          <pl title="Algebra" ns="0"/>
+          <pl title="Apt:foo" ns="0"/>
+          <pl title="Backronym" ns="0"/>
+          <pl title="Bar (computer science)" ns="0"/>
+          <pl title="Bill Gates" ns="0"/>
+          <pl title="Canonical" ns="0"/>
+          <pl title="Commands" ns="0"/>
+          <pl title="Computer programming" ns="0"/>
+          <pl title="Computer science" ns="0"/>
+          <pl title="Cruft" ns="0"/>
+          <pl title="Data" ns="0"/>
+          <pl title="Eric S. Raymond" ns="0"/>
+          <pl title="FUBAR" ns="0"/>
+          <pl title="Foo Camp" ns="0"/>
+          <pl title="Foo Fighter" ns="0"/>
+          <pl title="Foo Fighters" ns="0"/>
+          <pl title="Foobar" ns="0"/>
+          <pl title="Functions" ns="0"/>
+          <pl title="Hacker convention" ns="0"/>
+          <pl title="Internet Engineering Task Force" ns="0"/>
+          <pl title="Kludge" ns="0"/>
+          <pl title="List of Daffy Duck cartoons" ns="0"/>
+          <pl title="MIT Press" ns="0"/>
+          <pl title="Metasyntactic variable" ns="0"/>
+          <pl title="Neologism" ns="0"/>
+          <pl title="November 5" ns="0"/>
+          <pl title="O'Reilly Media" ns="0"/>
+          <pl title="Perl" ns="0"/>
+          <pl title="Pogo (comics)" ns="0"/>
+          <pl title="Pseudocode" ns="0"/>
+          <pl title="Request for Comments" ns="0"/>
+          <pl title="Smokey Stover" ns="0"/>
+          <pl title="Subroutine" ns="0"/>
+          <pl title="United States v. Microsoft" ns="0"/>
+          <pl title="Variable" ns="0"/>
+          <pl title="Variables" ns="0"/>
+          <pl title="Web Services Interoperability" ns="0"/>
+          <pl title="Wiktionary" ns="0"/>
+        </links>
+        <langlinks>
+          <ll lang="da">Foo (data)</ll>
+          <ll lang="fi">Foo</ll>
+          <ll lang="it">Foo</ll>
+          <ll lang="no">Foo</ll>
+          <ll lang="sl">Foo</ll>
+          <ll lang="vi">Foo</ll>
+        </langlinks>
+        <images>
+          <im title="Image:Wiktionary-logo-en.svg" ns="6"/>
+        </images>
+        <templates>
+          <tl title="Template:Cite book" ns="10"/>
+          <tl title="Template:Cite web" ns="10"/>
+          <tl title="Template:De icon" ns="10"/>
+          <tl title="Template:Languageicon" ns="10"/>
+          <tl title="Template:Reflist" ns="10"/>
+          <tl title="Template:Wiktionary" ns="10"/>
+        </templates>
+        <categories>
+          <cl title="Category:Placeholder names" ns="14"/>
+          <cl title="Category:Variable (computer programming)" ns="14"/>
+        </categories>
+        <extlinks>
+          <el>http://books.google.com/books?id=POlUJW3Z9McC&amp;pg=PA5&amp;dq=foo+jargon&amp;ei=GnIvR8PwGJiSpgK1qIT6CQ&amp;ie=ISO-8859-1&amp;sig=hIE0I8TtPGKUbSU-wgDTm4hQ8ig#PPA4,M1</el>
+          <el>http://foo-magazin.de/</el>
+          <el>http://tools.ietf.org/html/rfc3092</el>
+          <el>http://www.ietf.org/rfc/rfc3092.txt</el>
+          <el>http://www.news.com/Microsoft-ploy-to-block-Sun-exposed/2100-1001_3-912906.html</el>
+        </extlinks>
+      </page>
+    </pages>
+  </query>
+</api>

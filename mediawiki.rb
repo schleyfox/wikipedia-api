@@ -76,7 +76,7 @@ class MediaWiki
     attr_accessor :xml, :pages
   
     def initialize(url)
-      @xml = Hpricot.XML(open(url))
+      @xml = get_xml(url)
       @pages = (@xml/:api/:query/:pages/:page).collect{|p| Page.new(p) }
     end
   
@@ -111,6 +111,10 @@ class MediaWiki
       end
     end
   
+    protected
+    def get_xml(url)
+      Hpricot.XML(open(url))
+    end
   end
 
 
@@ -148,6 +152,7 @@ class MediaWiki
   def make_qs(name, collection)
     "#{name}=#{CGI.escape(collection.join('|'))}"
   end
+
 end
 
 
