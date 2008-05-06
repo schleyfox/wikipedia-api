@@ -1,12 +1,12 @@
 require 'test/unit'
 require 'rubygems'
 require 'shoulda'
-require 'mediawiki'
+require File.dirname(__FILE__) + '/../lib/mediawiki'
 
 class MediaWiki
   class MediaWikiBase
     def get_xml(url)
-      Hpricot.XML(open('sample.xml'))
+      Hpricot.XML(open(File.dirname(__FILE__) + '/sample.xml'))
     end
   end
 end
