@@ -2,6 +2,29 @@
 # API.  This is very much a work in progress so don't count on it not changing
 # (for the better).
 #
+# The MediaWiki class wraps all the functionality for general MediaWiki usage.
+# You can also require wikipedia.rb to get the 
+# Wikipedia[link:/files/lib/wikipedia_rb.html]  constant that wraps
+# up the basic functionality.
+#
+# == Installation
+#   sudo gem install schleyfox-wikipedia-api --source=http://gems.github.com
+#
+# == Basic Usage
+#
+# For example, to get a page from Wikiquote
+#
+#   require 'mediawiki'
+#   w = MediaWiki.new('http://en.wikiquote.org/w/api.php')
+#   w.find_by_title('Oscar Wilde')
+#
+# If you want Wikipedia, you can use the built in constant
+#
+#   require 'wikipedia'
+#   Wikipedia.find_by_title('Oscar Wilde')
+# 
+# == Source
+#
 # Check out the source on github http://github.com/schleyfox/wikipedia-api
 
 ['hpricot', 'cgi', 'open-uri'].each {|f| require f}
